@@ -1,0 +1,77 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<a href="/logout">Logout</a>
+
+  <h1>Task Analysis</h1>
+  <hr>
+  <h2>Tasks Completed After Deadline</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Task Title</th>
+        <th>Latency (seconds)</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for task in overdue_tasks %}
+        <tr>
+          <td>{{ task.title }}</td>
+          <td>{{ task.latency }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <hr>
+  <h2>Average Task Completion Time</h2>
+  <p>{{ avg_completion_time }} seconds</p>
+  <hr>
+  <h2>Completed Tasks by Type</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Task Type</th>
+        <th>Count</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for task in completed_tasks_by_type %}
+        <tr>
+        <td>{{ task.task_type }}</td>
+        <td>{{ task.count }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  <h2>Uncompleted Tasks by Deadline</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Deadline</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for task in uncompleted_tasks %}
+        <tr>
+        <td>{{ task.title }}</td>
+        <td>{{ task.deadline }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  <h2>Top 2 Tasks with the longest Completion Time</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Completion Time</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for task in top_longest_tasks %}
+        <tr>
+        <td>{{ task.title }}</td>
+        <td>{{ task.completion_time }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+  </table>
